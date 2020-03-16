@@ -41,4 +41,6 @@ from keras.models import Sequential
 model = Sequential()
 ```
 
+![](./images/kera_work_well.png)
+
 Shift+Enter を押してエラーが出なかったらOK。もし、モジュールがないと言われた場合は、 Anaconda Navigator の Application on が kerastutorial になっているか確認する。
