@@ -12,3 +12,31 @@ conda init を実行しましょう。 zshの人はzsh。bashの人はbash
 $ conda create --name kerastutorial python=3.6
 $ conda activate kerastutorial
 ```
+
+# Anaconda Navigator のセットアップ
+
+Anaconda Navigator を起動し、 Application on を kerastutorial に変更する。
+
+![](images/application_on.png)
+
+# JupyterLab のインストール
+
+Anaconda Navigator を使って JupyterLab を起動する
+
+![](images/jupyterlab.png)
+
+http://localhost:8888/lab へ接続する
+
+![](images/notebook.png)
+
+# Keras に入門する
+
+https://keras.io/#getting-started-30-seconds-to-keras のコードを実行する。
+
+```
+from keras.models import Sequential
+
+model = Sequential()
+`
+
+Shift+Enterを押してエラーが出なかったらOK。もし、モジュールがないと言われた場合は、 Anaconda Navigator の Application on が kerastutorial になっているか確認する。
