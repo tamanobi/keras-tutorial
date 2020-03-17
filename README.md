@@ -35,7 +35,7 @@ http://localhost:8888/lab へ接続する
 
 https://keras.io/#getting-started-30-seconds-to-keras のコードを実行する。
 
-```
+```python
 from keras.models import Sequential
 
 model = Sequential()
@@ -72,7 +72,7 @@ Shift+Enter を押してエラーが出なかったらOK。もし、モジュー
 
 ### 2値分類を行う
 
-```
+```python
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 
@@ -106,7 +106,7 @@ model.predict(np.random.random((1, 100)))
 
 以下のコードを実行すると、EpochごとのAccuracyの遷移が確認できる。
 
-```
+```python
 %matplotlib inline
 import matplotlib.pyplot as plt
  
@@ -149,7 +149,7 @@ The kernel for Untitled.ipynb appears to have died. It will restart automaticall
 
 さきほどは、正確度(acc)がEpochが進むごとにどのように上がっていくか可視化した。損失(loss)がどのように減っていくか可視化する。
 
-```
+```python
 %matplotlib inline
 import matplotlib.pyplot as plt
  
@@ -171,7 +171,7 @@ plt.show()
 
 ## loss と optimizer は何か？
 
-```
+```python
 model.compile(optimizer='rmsprop',
               loss='binary_crossentropy',
               metrics=['accuracy'])
@@ -193,7 +193,7 @@ lossとは学習時にモデルがどれくらい間違っているか（正確�
 
 このパラメーターをざっくり言うと入力データの「表現」である。この「表現」が出力にとって意味をもつことが期待される。「良い経験」とも言えるかもしれない。
 
-```
+```python
 model = Sequential()
 model.add(Dense(32, activation='relu', input_dim=100))
 model.add(Dense(1, activation='sigmoid'))
@@ -256,7 +256,7 @@ https://keras.io/ja/datasets/#mnist
 
 合計値を予測するモデルを構築するためのデータがあったとすれば、x に `[1, 2, 3]` が入っており、 y に `6` が入るようなものである。
 
-```
+```python
 from keras.datasets import mnist
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -266,7 +266,7 @@ from keras.datasets import mnist
 
 x_train, y_train, x_test, y_test のどれも、28x28のグレー画像たちが入っている。 `x_train[0]` という形でアクセスし、 `matplotlib` を使って可視化できる。
 
-```
+```python
 from keras.datasets import mnist
 import matplotlib.pyplot as plt
 
@@ -282,7 +282,7 @@ plt.show()
 
 以下のコードで実際にCNNを構築する。
 
-```
+```python
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
@@ -300,14 +300,14 @@ model.add(Dense(10, activation='softmax')) # 10次元ベクトル。各値は0�
 
 modelは、シーケンシャルなネットワークになっている。modelのネットワークをわかりやすく表示する `summary()` 関数を使ってみる。
 
-```
+```python
 model.summary()
 ```
 
 以下のような、出力が得られる。各レイヤーの名前や形状、パラメーター数が確認できる。
 このモデルはこれだけ短いコードであっても、 **1,199,882** のパラメーターが存在する。
 
-```
+```python
 Model: "sequential_1"
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
@@ -429,7 +429,7 @@ plt.imshow(image, cmap='gray')
 
 ダウンロードした数字をモデルから推論してみる。
 
-```
+```python
 # 入力の形状は原則 (n, height, width, 1) になる
 images = image.reshape(1, img_rows, img_cols, 1)
 result = model.predict(images)
@@ -438,7 +438,7 @@ result
 
 resultの中には連想配列が入るため、この中の数値は確からしさを表している。もっとも確からしさが高いインデックスが、推論結果とみなせる。
 
-```
+```python
 array([[1.0205811e-03, 6.8330079e-09, 3.4062857e-06, 3.1529291e-04,
         2.4643386e-08, 7.1315593e-01, 1.4781141e-01, 4.9041478e-08,
         1.3623212e-01, 1.4611568e-03]], dtype=float32)
@@ -446,7 +446,7 @@ array([[1.0205811e-03, 6.8330079e-09, 3.4062857e-06, 3.1529291e-04,
 
 確からしさの高いインデックスを調べるには、numpyの `argmax` を使う。インデックスは0から始まるので+1すれば数字と一致する。
 
-```
+```python
 import numpy as np
 np.argmax(result[0])+1 # 結論
 # 6!
